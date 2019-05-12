@@ -1,0 +1,86 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #4f5877;
+}
+
+.container {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-align: center;
+  -moz-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -moz-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+}
+
+.calculator {
+  margin-top: 40px;
+  height: 580px;
+  width: 430px;
+}
+
+.display {
+  height: 180px;
+  background-color: #475762;
+  font-size: 40px;
+}
+
+.content {
+  background-color: #ffffff;
+  height: 400px;
+  display: flex;
+}
+
+.number {
+  width: 330px;
+}
+
+.operations {
+  width: 105px;
+  background-color: #00ad7c;
+}
+
+.operations button {
+  height: 80px;
+  width: 105px;
+  background-color: #00ad7c;
+  font-size: 25px;
+  color: #ffffff;
+}
+
+button {
+  font-size: 25px;
+  color: #93a8ac;
+  height: 80px;
+  width: 105px;
+  background-color: #ffffff;
+  border: none;
+  outline: none;
+  margin: 0;
+  padding: 0;
+}
+
+.display-input {
+  color: #ffffff;
+  background-color: #475762;
+  margin-top: 88px;
+  margin-left: 275px;
+  height: 48px;
+  width: 118px;
+  border: 0;
+  color: #ffffff;
+  font-size: 42px;
+  outline: none;
+}
