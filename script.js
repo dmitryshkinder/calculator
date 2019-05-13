@@ -4,6 +4,7 @@ var numbers = document.querySelectorAll('.numbers'),
   ce = document.getElementById('ce'),
   result = document.getElementById('result'),
   display = document.getElementById('display'),
+  c = document.getElementById('c'),
   MemoryCurrentNumber = 0,
   MemoryNewNumber = false,
   MemoryPendingOperation = '',
@@ -25,7 +26,12 @@ for (var i = 0; i < operations.length; i++) {
 
 decimalBtn.addEventListener('click', decimal);
 
-ce.addEventListener('click', clear);
+ce.addEventListener('click', function(e) {
+  clear(e.srcElement.id);
+});
+c.addEventListener('click', function(e) {
+  clear(e.srcElement.id);
+});
 
 function numberPress(number) {
   if (MemoryNewNumber) {
@@ -55,7 +61,11 @@ function operation(op) {
       MemoryCurrentNumber *= parseFloat(localOperationMemory);
     } else if (MemoryPendingOperation === '÷') {
       MemoryCurrentNumber /= parseFloat(localOperationMemory);
-    } else {
+    }
+    // else if (MemoryPendingOperation === '√') {
+    //   MemoryCurrentNumber = Math.sqrt(parseFloat(localOperationMemory));
+    // }
+    else {
       MemoryCurrentNumber = parseFloat(localOperationMemory);
     }
     display.value = MemoryCurrentNumber;
@@ -78,138 +88,66 @@ function decimal() {
   display.value = localDecimalMemory;
 }
 
-function clear() {
-  display.value = '0';
-  MemoryNewNumber = true;
+function clear(id) {
+  if (id === 'c') {
+    display.value = '0';
+    MemoryNewNumber = true;
+    MemoryCurrentNumber = 0;
+    MemoryPendingOperation = '';
+  } else {
+    display.value = '0';
+    MemoryNewNumber = true;
+  }
 }
 
-// Numbers keydown
-
 window.addEventListener('keydown', function(e) {
-  if (e.keyCode === 49) {
+  // Numbers keydown
+  if (e.keyCode === 49 || e.keyCode === 97) {
     numberPress(1);
-  }
-});
-
-window.addEventListener('keydown', function(e) {
-  if (e.keyCode === 50) {
+  } else if (e.keyCode === 50 || e.keyCode === 98) {
     numberPress(2);
-  }
-});
-
-window.addEventListener('keydown', function(e) {
-  if (e.keyCode === 51) {
+  } else if (e.keyCode === 51 || e.keyCode === 99) {
     numberPress(3);
-  }
-});
-
-window.addEventListener('keydown', function(e) {
-  if (e.keyCode === 52) {
+  } else if (e.keyCode === 52 || e.keyCode === 100) {
     numberPress(4);
-  }
-});
-
-window.addEventListener('keydown', function(e) {
-  if (e.keyCode === 53) {
+  } else if (e.keyCode === 53 || e.keyCode === 101) {
     numberPress(5);
-  }
-});
-
-window.addEventListener('keydown', function(e) {
-  if (e.keyCode === 54) {
+  } else if (e.keyCode === 54 || e.keyCode === 102) {
     numberPress(6);
-  }
-});
-
-window.addEventListener('keydown', function(e) {
-  if (e.keyCode === 55) {
+  } else if (e.keyCode === 55 || e.keyCode === 103) {
     numberPress(7);
-  }
-});
-
-window.addEventListener('keydown', function(e) {
-  if (e.keyCode === 56 && !e.shiftKey) {
+  } else if ((e.keyCode === 56 && !e.shiftKey) || e.keyCode === 104) {
     numberPress(8);
-  }
-});
-
-window.addEventListener('keydown', function(e) {
-  if (e.keyCode === 57) {
+  } else if (e.keyCode === 57 || e.keyCode === 105) {
     numberPress(9);
-  }
-});
-
-window.addEventListener('keydown', function(e) {
-  if (e.keyCode === 48) {
+  } else if (e.keyCode === 48 || e.keyCode === 96) {
     numberPress(0);
-  }
-});
-
-// operations keydown
-
-window.addEventListener('keydown', function(e) {
-  if (e.keyCode === 191) {
+    // operations keydown
+  } else if (e.keyCode === 191 || e.keyCode === 111) {
     operation('÷');
-  }
-});
-
-window.addEventListener('keydown', function(e) {
-  // Для Enter
-  if (e.keyCode === 13) {
+    // Для Enter
+  } else if (e.keyCode === 13 || e.keyCode === 13) {
     operation('=');
-  }
-});
-
-window.addEventListener('keydown', function(e) {
-  if (e.keyCode == 16) {
+  } else if (e.keyCode == 16) {
     shiftIsPressed = true;
     e.preventDefault();
-  }
-});
-
-window.addEventListener('keyup', function(e) {
-  if (e.keyCode == 16) {
+  } else if (e.keyCode == 16) {
     shiftIsPressed = false;
     e.preventDefault();
-  }
-});
-
-window.addEventListener('keydown', function(e) {
-  // Для равно
-  if (!shiftIsPressed && e.keyCode === 187) {
+    // Для равно
+  } else if (!shiftIsPressed && e.keyCode === 187) {
     operation('=');
-  }
-});
-
-window.addEventListener('keydown', function(e) {
-  if (shiftIsPressed && e.keyCode === 56) {
+  } else if ((shiftIsPressed && e.keyCode === 56) || e.keyCode === 106) {
     e.preventDefault();
     operation('x');
-  }
-});
-
-window.addEventListener('keydown', function(e) {
-  if (shiftIsPressed && e.keyCode === 187) {
+  } else if ((shiftIsPressed && e.keyCode === 187) || e.keyCode === 107) {
     operation('+');
-  }
-});
-
-window.addEventListener('keydown', function(e) {
-  if (e.keyCode === 189) {
+  } else if (e.keyCode === 189 || e.keyCode === 109) {
     operation('-');
-  }
-});
-
-// delete keydown
-
-window.addEventListener('keydown', function(e) {
-  if (e.keyCode === 46) {
-    clear();
-  }
-});
-
-window.addEventListener('keydown', function(e) {
-  if (e.keyCode === 8) {
-    clear();
+    // delete keydown
+  } else if (e.keyCode === 46) {
+    clear('c');
+  } else if (e.keyCode === 8) {
+    clear('ce');
   }
 });

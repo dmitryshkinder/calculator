@@ -89,3 +89,11 @@ button {
   outline: none;
   text-align: right;
 }
+
+.operations>button:active {
+  background-color: #009067;
+}
+
+.number>button:active {
+  background-color: #e5e5e5;
+}
