@@ -5,10 +5,12 @@ var numbers = document.querySelectorAll('.numbers'),
   result = document.getElementById('result'),
   display = document.getElementById('display'),
   c = document.getElementById('c'),
-  MemoryCurrentNumber = 0,
-  MemoryNewNumber = false,
-  MemoryPendingOperation = '',
-  shiftIsPressed = false;
+  sqrt = document.querySelector('.sqrt'),
+  percent = document.querySelector('.percent'),
+  MemoryCurrentNumber = 0, // Текущее число в памяти
+  MemoryNewNumber = false, // Если вводится новое число, то принимает true
+  MemoryPendingOperation = '', // Ожидание операции
+  shiftIsPressed = false; // Если нажимает на shift, то true, если отпускаем - false
 
 for (var i = 0; i < numbers.length; i++) {
   var number = numbers[i];
@@ -46,6 +48,30 @@ function numberPress(number) {
   }
 }
 
+percent.addEventListener('click', function(e) {
+  percentFoo(e);
+});
+
+sqrt.addEventListener('click', function(e) {
+  sqrtFoo(e);
+});
+
+function sqrtFoo(e) {
+  if (e.target.textContent === '√') {
+    MemoryCurrentNumber = Math.sqrt(Number(display.value));
+    display.value = MemoryCurrentNumber;
+    MemoryPendingOperation = e;
+  }
+}
+
+function percentFoo(e) {
+  if (e.target.textContent === '%') {
+    MemoryCurrentNumber = parseFloat(display.value) / 100;
+    display.value = MemoryCurrentNumber;
+    MemoryPendingOperation = e;
+  }
+}
+
 function operation(op) {
   var localOperationMemory = display.value;
   if (MemoryNewNumber && MemoryPendingOperation !== '=') {
@@ -61,12 +87,8 @@ function operation(op) {
       MemoryCurrentNumber *= parseFloat(localOperationMemory);
     } else if (MemoryPendingOperation === '÷') {
       MemoryCurrentNumber /= parseFloat(localOperationMemory);
-    }
-    // else if (MemoryPendingOperation === '√') {
-    //   MemoryCurrentNumber = Math.sqrt(parseFloat(localOperationMemory));
-    // }
-    else {
-      MemoryCurrentNumber = parseFloat(localOperationMemory);
+    } else {
+      MemoryCurrentNumber = parseFloat(localOperationMemory); // Тут Баг. Т.к. мы преобразуем число в флоат, он его округляет.
     }
     display.value = MemoryCurrentNumber;
     MemoryPendingOperation = op;
@@ -94,6 +116,9 @@ function clear(id) {
     MemoryNewNumber = true;
     MemoryCurrentNumber = 0;
     MemoryPendingOperation = '';
+  } else if (display.value.length > 1) {
+    display.value = display.value.slice(0, display.value.length - 1);
+    MemoryNewNumber = true;
   } else {
     display.value = '0';
     MemoryNewNumber = true;
@@ -149,5 +174,8 @@ window.addEventListener('keydown', function(e) {
     clear('c');
   } else if (e.keyCode === 8) {
     clear('ce');
+    // decimal
+  } else if (e.keyCode === 190) {
+    decimal();
   }
 });

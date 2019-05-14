@@ -1,53 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>cal</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-  <title>cal</title>
-  <link rel="stylesheet" href="style.css" />
-</head>
-
-<body>
-  <div class="container">
-    <div class="calculator">
-      <div class="display">
-        <div class="result">
-          <input type="text" size="15" maxlength="15" id="display" name="" class="display-input" value="0" disabled />
+  <body>
+    <div class="container">
+      <div class="calculator">
+        <div class="display">
+          <div class="result">
+            <input
+              type="text"
+              pattern="[0-9]{,3}"
+              id="display"
+              name=""
+              class="display-input"
+              value="0"
+              disabled
+            />
+          </div>
         </div>
-      </div>
-      <div class="content">
-        <div class="number">
-          <button>%</button>
-          <button id="c">C</button>
-          <button class="operation" style="background-color: #ffffff">√</button>
-          <button class="numbers">7</button>
-          <button class="numbers">8</button>
-          <button class="numbers">9</button>
-          <button class="numbers">4</button>
-          <button class="numbers">5</button>
-          <button class="numbers">6</button>
-          <button class="numbers">1</button>
-          <button class="numbers">2</button>
-          <button class="numbers">3</button>
-          <button class="numbers">0</button>
-          <button id="decimal">.</button>
-          <button id="ce"><img src="/img/delete.png" alt="" /></button>
-        </div>
+        <div class="content">
+          <div class="number">
+            <button class="percent">%</button>
+            <button id="c">C</button>
+            <button id="sqr" class="sqrt">√</button>
+            <button class="numbers">7</button>
+            <button class="numbers">8</button>
+            <button class="numbers">9</button>
+            <button class="numbers">4</button>
+            <button class="numbers">5</button>
+            <button class="numbers">6</button>
+            <button class="numbers">1</button>
+            <button class="numbers">2</button>
+            <button class="numbers">3</button>
+            <button class="numbers">0</button>
+            <button id="decimal">.</button>
+            <button id="ce"><img src="/img/delete.png" alt="" /></button>
+          </div>
 
-        <div class="operations">
-          <button class="operation">÷</button>
-          <button class="operation">x</button>
-          <button class="operation">-</button>
-          <button class="operation">+</button>
-          <button class="operation" id="result">=</button>
+          <div class="operations">
+            <button class="operation">÷</button>
+            <button class="operation">x</button>
+            <button class="operation">-</button>
+            <button class="operation">+</button>
+            <button class="operation" id="result">=</button>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <script src="/script.js"></script>
-</body>
-
+    <script src="/script.js"></script>
+  </body>
 </html>

@@ -97,3 +97,11 @@ button {
 .number>button:active {
   background-color: #e5e5e5;
 }
+
+.sqrt {
+  background-color: #ffffff;
+}
+
+.sqrt:active {
+  background-color: #e5e5e5;
+}
